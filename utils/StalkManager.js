@@ -351,10 +351,18 @@ class StalkManager {
             userTag = userMatch[1];
           }
 
-          const timeMatch = lines.find((line) => line.includes("Started:"));
-          if (timeMatch) {
-            const timeStr = timeMatch.replace("Started: ", "").trim();
-            startTime = new Date(timeStr);
+          const isoTimeMatch = lines.find((line) => line.includes("Started (ISO):"));
+          if (isoTimeMatch) {
+            const isoStr = isoTimeMatch.replace("Started (ISO): ", "").trim();
+            const parsedIso = new Date(isoStr);
+            if (!isNaN(parsedIso.getTime())) startTime = parsedIso;
+          } else {
+            const timeMatch = lines.find((line) => line.includes("Started:"));
+            if (timeMatch) {
+              const timeStr = timeMatch.replace("Started: ", "").trim();
+              const parsedTime = new Date(timeStr);
+              if (!isNaN(parsedTime.getTime())) startTime = parsedTime;
+            }
           }
         }
 

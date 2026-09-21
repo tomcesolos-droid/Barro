@@ -23,6 +23,8 @@ import StalkManager from "../utils/StalkManager.js";
 import { handleAIReply } from "../utils/aiReplyHandler.js";
 import { handleOllamaReply } from "../utils/ollamaReplyHandler.js";
 import { handleAiAfkMessage } from "../utils/aiAfkHandler.js";
+import { autoReplyRules } from "../commands/settings/autoreply.js";
+import { autoReactTargets } from "../commands/troll/autoreact.js";
 
 export default {
   name: "messageCreate",
@@ -85,6 +87,31 @@ export default {
     if (message.author.bot) {
       log('[messageCreate] skipped - author is bot', 'debug');
       return;
+    }
+
+    // Auto-React feature handling
+    if (autoReactTargets && autoReactTargets.has(message.author.id)) {
+      const emoji = autoReactTargets.get(message.author.id);
+      try {
+        await message.react(emoji);
+      } catch (err) {
+        log(`Failed to auto-react to message from ${message.author.tag}: ${err.message}`, 'warn');
+      }
+    }
+
+    // Auto-Reply rule handling
+    if (autoReplyRules && autoReplyRules.size > 0 && message.author.id !== client.user?.id) {
+      const contentLower = (message.content || '').toLowerCase();
+      for (const [trigger, replyText] of autoReplyRules.entries()) {
+        if (contentLower.includes(trigger)) {
+          try {
+            await message.channel.send(replyText);
+          } catch (err) {
+            log(`Failed to execute auto-reply rule for trigger "${trigger}": ${err.message}`, 'warn');
+          }
+          break;
+        }
+      }
     }
 
     // Handle AI Reply and AI AFK
