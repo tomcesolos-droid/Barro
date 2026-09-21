@@ -89,227 +89,127 @@
 
 ---
 
-## 200 Exclusive Command Ideas (20 Commands per Category)
+## 100 BRAND NEW Command Ideas (Never Before Seen in Barro)
 
-### 🤖 1. Category: AI (20 Commands)
-1. **`aicode`**: Generates, refactors, and debugs code snippets with multi-language formatting.
-2. **`aiprompt`**: Switches custom AI system personas (e.g. hacker, lawyer, toxic gamer).
-3. **`aisummarize`**: Summarizes the last N messages in the channel using local/cloud AI.
-4. **`aifactcheck`**: Analyzes a replied message and verifies factual claims.
-5. **`aisentiment`**: Scans channel chat history and graphs emotional sentiment (positive/toxic/neutral).
-6. **`aitranslateauto`**: AI-driven automatic real-time translation of all incoming channel messages.
-7. **`aiwriter`**: Generates professional, academic, or creative essays, emails, and articles.
-8. **`airoast`**: Uses AI to generate a hilarious custom roast targeting a user based on profile history.
-9. **`aigrammar`**: Corrects grammar and improves writing tone for draft text.
-10. **`aiimageprompt`**: Generates optimized prompts for Midjourney or Stable Diffusion.
-11. **`aiinterrogator`**: Runs an interactive AI chat mode that cross-examines a suspect user.
-12. **`aidecode`**: Uses AI to detect, decrypt, and explain encoded texts (Base64, Hex, ROT13, Ciphers).
-13. **`aisongwriter`**: Generates song lyrics, rhymes, and verse structure in requested genres.
-14. **`aidebate`**: Simulates a multi-argument debate against AI on any custom topic.
-15. **`aipsychologist`**: Interactive AI persona offering empathetic active-listening advice.
-16. **`aianalyzer`**: Parses JSON/CSV data files uploaded in chat and returns statistical summaries.
-17. **`aitldr`**: Generates a 1-sentence TL;DR summary of long article links or message walls.
-18. **`aipseudo`**: Converts pseudo-code or plain language descriptions into working JavaScript/Python.
-19. **`aicooking`**: Generates custom recipes based on ingredients provided in prompt.
-20. **`aipredict`**: Generates playful AI predictions for future trends or user questions.
+### 🤖 AI Innovations (10 Ideas)
+1. `aisongcover` - Generates AI parody song lyrics and voice covers for a given user tag.
+2. `aipersona` - Dynamically generates and applies custom prompt personalities to auto-reply handlers.
+3. `aiprofessor` - Explains complex computer science, physics, or philosophy topics with diagrams.
+4. `aivibecheck` - Analyzes a user's recent 50 messages to generate a psychological profile & vibe rating.
+5. `aidream` - Generates surreal story narrative sequences from short user prompt inputs.
+6. `aicrypto` - Analyzes crypto market sentiment and news using AI search summarization.
+7. `aiscreenwriter` - Drafts full multi-character movie scripts starring members in the server.
+8. `aiinterview` - Prepares technical or job interview mock questions and evaluates your answers.
+9. `ailawyer` - Generates humorous legal defense briefs for server drama controversies.
+10. `aihypeman` - Automatically hypes up every message you post with enthusiastic compliments.
 
-### 🌐 2. Category: General (20 Commands)
-1. **`afkstatus`**: Displays global AFK statistics and away-message trigger logs across all accounts.
-2. **`servericon`**: Downloads and displays high-res server icons, banners, and splash images.
-3. **`userhistory`**: Shows recorded username and global display name history for target user.
-4. **`vcmembers`**: Lists all active voice channels in guild and currently connected members.
-5. **`channelinfo`**: Displays channel creation date, topic, rate limit cooldown, and channel ID.
-6. **`firstmessage`**: Fetches link and preview of the very first message ever sent in current channel.
-7. **`emojilist`**: Lists all custom server emojis with high-res download links and animated indicators.
-8. **`rolelist`**: Displays all server roles sorted by hierarchy position and member count.
-9. **`inviteinfo`**: Inspects a Discord invite link without joining to show guild stats, owner, and boost level.
-10. **`boostinfo`**: Shows current server Nitro boost level, total boosters, and perks unlocked.
-11. **`messagecount`**: Counts total messages sent by user in current channel or guild.
-12. **`botinfo`**: Displays detailed selfbot environment stats (Node version, memory, total accounts).
-13. **`uptime`**: Shows detailed process uptime and runtime statistics across all account clients.
-14. **`membercount`**: Displays breakdown of total members, bots, and online status counts in guild.
-15. **`avatarhistory`**: Displays timeline of recorded avatar changes for tracked user.
-16. **`bannerhistory`**: Displays historical timeline of profile banner changes for user.
-17. **`pingall`**: Tests ping roundtrip latencies across all configured selfbot accounts simultaneously.
-18. **`myroles`**: Lists all roles assigned to current selfbot user in active guild.
-19. **`guildfeatures`**: Shows unlocked Discord guild feature flags (e.g. VANITY_URL, COMMUNITY).
-20. **`vclink`**: Generates a quick join link for active voice channel.
+### 🌐 Social & Server Intelligence (10 Ideas)
+11. `ghostdetector` - Detects phantom/ghost members in a server who have never spoken or reacted.
+12. `activityheat` - Generates an ASCII heatmap showing peak chat activity hours in the server.
+13. `mutualtracker` - Compares mutual servers and friends between 2 target user IDs.
+14. `voicetracker` - Tracks cumulative voice channel time spent per member in the server.
+15. `roleoverlap` - Displays member overlap counts between two server roles.
+16. `serverpulse` - Shows real-time chat velocity (messages per minute) in current channel.
+17. `topemojis` - Ranks most and least used custom emojis in current server.
+18. `firstjoin` - Displays leaderboard of earliest joined members in the server.
+19. `lurkerlist` - Lists members who currently have active presence (Online) but haven't chatted in 30+ days.
+20. `inviterank` - Ranks top server invite creators by active invited uses.
 
-### ⚙️ 3. Category: Main (20 Commands)
-1. **`questinfo`**: Deep-inspects active quest reward codes, expiration dates, and completion status.
-2. **`questclaim`**: Instantly claims completed quest reward keys without launching game.
-3. **`whitelistlist`**: Displays current Whitelist and Allowed Users across all connected accounts.
-4. **`whitelistadd`**: Adds target user ID to global trusted execution allowlist.
-5. **`whitelistremove`**: Revokes whitelist access permissions from target user ID.
-6. **`tasklist`**: Shows all running background tasks (schedulers, stalkers, status rotators).
-7. **`taskinfo`**: Deep-inspects runtime metrics and execution frequency for a specific task ID.
-8. **`accountswitch`**: Sets default active account for executing CLI command actions.
-9. **`accountlist`**: Displays state overview of all connected multi-account tokens and prefixes.
-10. **`questrefresh`**: Forces refetch and reload of active Discord quest list from API.
-11. **`taskkill`**: Forces termination of a specific running background task by ID.
-12. **`configview`**: Displays formatted view of current `config.yaml` settings in ANSI block.
-13. **`configreload`**: Hot-reloads configuration file changes without restarting runtime process.
-14. **`backupcreate`**: Generates local timestamped ZIP/JSON backup of all `data/` files.
-15. **`backuprestore`**: Restores local state files from selected backup file.
-16. **`backuplist`**: Lists all saved local state backup snapshots with creation dates.
-17. **`dataclean`**: Prunes stale history logs older than specified number of days.
-18. **`eventlist`**: Displays active registered event listeners across all client instances.
-19. **`commandlist`**: Lists all available loaded commands categorized by directory.
-20. **`versioncheck`**: Checks online repo for latest updates and release notes.
+### ⚙️ Automation & Stealth Tools (10 Ideas)
+21. `autoaccept` - Auto-accepts all incoming friend requests from target user list.
+22. `autodeafen` - Automatically self-defeans upon joining any voice channel.
+23. `autoack` - Silently marks all unread channel notifications as read across selected servers.
+24. `autoclear` - Periodically auto-clears your own messages in DM channels every N hours.
+25. `autothread` - Automatically creates a thread on any new message posted in specified channels.
+26. `stealthvc` - Joins voice channel without sending voice state updates to server log webhooks.
+27. `autoarchiver` - Exports and archives channel chat histories to HTML/JSON automatically.
+28. `pingdefense` - Automatically mutes or blocks users who ghostping or spam ping you.
+29. `statusradar` - Alerts you via DM when a target user changes their status to Online or DND.
+30. `mediavault` - Automatically saves every image/video posted in specified channels to local disk.
 
-### 🛠️ 4. Category: Settings (20 Commands)
-1. **`prefixset`**: Bulk-updates command prefix across all connected multi-accounts.
-2. **`dmtoggle`**: Toggles logging of incoming direct messages to debug logs.
-3. **`autodelete`**: Configures auto-deletion timer duration for bot command response messages.
-4. **`cooldownset`**: Customizes global default command execution cooldown timer.
-5. **`logtype`**: Configures active terminal log verbosity levels (info, debug, warn, error).
-6. **`nsfwtoggle`**: Enables or disables execution of nsfw-tagged commands.
-7. **`ownerset`**: Manages list of super-admin user IDs granted owner bypass permissions.
-8. **`reactself`**: Toggles whether commands execute on self-messages or mentions.
-9. **`webhookset`**: Configures default alert webhook URL for system notifications.
-10. **`dmblocker`**: Toggles automatic blocking of incoming unsolicited direct messages.
-11. **`friendaccept`**: Auto-accepts incoming friend requests from whitelisted users.
-12. **`presenceprivacy`**: Configures whether custom statuses show device activity icons.
-13. **`ratepolicy`**: Sets rate-limit backoff strategy (strict sleep vs skip request).
-14. **`terminalmode`**: Toggles terminal output between compact and verbose banner formats.
-15. **`clientbrowser`**: Configures custom client browser user-agent property (Desktop vs Web vs Mobile).
-16. **`timeoutset`**: Adjusts default REST API request timeout limits.
-17. **`backupauto`**: Configures automated hourly/daily background state backup schedule.
-18. **`ignoreset`**: Ignores command invocation in specific channel IDs.
-19. **`errorfile`**: Toggles whether error stacktraces append to `errors.txt`.
-20. **`resetsettings`**: Resets all configuration options back to factory defaults.
+### 🛠️ Customization & Profile Utilities (10 Ideas)
+31. `profilebackup` - Backs up your avatar, banner, bio, and custom status to a local JSON preset.
+32. `profilerestore` - Restores saved profile avatar, banner, and bio presets instantly.
+33. `biorotator` - Rotates custom profile bio text on a scheduled timer.
+34. `pronounsync` - Synchronizes profile pronouns across custom status and profile settings.
+35. `pfpcropper` - Crops and formats any image URL into Discord avatar dimensions.
+36. `banneranimator` - Assembles multiple frame image URLs into an animated GIF banner.
+37. `badgedisplay` - Formats and displays all official Discord badges owned by account.
+38. `connectionsync` - Manages connected third-party accounts (YouTube, Twitch, GitHub, Steam).
+39. `themebuilder2` - Interactive visual ANSI color picker for custom message header design.
+40. `fontchanger` - Transforms input message text into stylized Unicode mathematical fonts.
 
-### 📊 5. Category: Status (20 Commands)
-1. **`statustext`**: Sets instant static custom status text with optional emoji.
-2. **`statusclear`**: Clears active custom status and resets user activity state.
-3. **`rpcconfig`**: Hot-reloads Rich Presence configuration from `rpc.yml`.
-4. **`rpcstart`**: Enables and starts Rich Presence RPC engine.
-5. **`rpcstop`**: Disables and stops Rich Presence RPC engine.
-6. **`spoofmobile`**: Toggles online presence indicator to appear as Discord Mobile.
-7. **`spoofdesktop`**: Sets online presence indicator to appear as Discord Desktop.
-8. **`spoofweb`**: Sets online presence indicator to appear as Discord Web Client.
-9. **`statuscycle`**: Rotates custom status between predefined list every N seconds.
-10. **`streamstatus`**: Sets status activity to "Streaming" with custom Twitch/YouTube URL.
-11. **`playstatus`**: Sets status activity to "Playing" with custom game name.
-12. **`listenstatus`**: Sets status activity to "Listening to" custom music track.
-13. **`watchstatus`**: Sets status activity to "Watching" custom video or movie title.
-14. **`competestatus`**: Sets status activity to "Competing in" custom tournament.
-15. **`invisible`**: Sets account online state to Invisible (Offline appearance).
-16. **`dnd`**: Sets account online state to Do Not Disturb.
-17. **`idle`**: Sets account online state to Idle.
-18. **`online`**: Sets account online state to Online.
-19. **`statusbackup`**: Saves active status and RPC settings to reusable preset.
-20. **`statusrestore`**: Restores saved status preset settings.
+### 🤡 Troll & Misdirection Utilities (10 Ideas)
+41. `faketyping2` - Simulates typing indicators across multiple channels simultaneously.
+42. `ghostcall` - Initiates and instantly cancels a DM call to trigger notification sounds.
+43. `fakemuted` - Mutes audio output while keeping microphone icon appearing unmuted.
+44. `fakedeafened` - Deafens audio output while keeping headset icon appearing undeafened.
+45. `fakeupdate` - Sends a convincing fake Discord system update notification message block.
+46. `spamreact` - Reacts with 20 different random emojis to a target message in sequence.
+47. `mockvoice` - Plays goofy distorted soundboard audio effects in voice channels.
+48. `invisiblename` - Sets server nickname to invisible zero-width space characters.
+49. `fakeparent` - Changes group chat channel parent name to confuse members.
+50. `glitchmsg` - Formats message using combining Unicode characters for corrupted visual effects.
 
-### 🎨 6. Category: Theme (20 Commands)
-1. **`themeimport`**: Imports external ANSI theme JSON palette string.
-2. **`themeexport`**: Exports current active ANSI theme colors as JSON.
-3. **`accent`**: Customizes primary ANSI accent highlight color code.
-4. **`header`**: Customizes header bold title ANSI color code.
-5. **`label`**: Customizes field label ANSI color code.
-6. **`divider`**: Customizes field divider bar ANSI color code.
-7. **`text`**: Customizes regular body text ANSI color code.
-8. **`preset`**: Loads predefined color theme preset (cyberpunk, neon, dracula, nord, matrix).
-9. **`presetlist`**: Displays all available built-in theme presets with color previews.
-10. **`normalheader`**: Toggles between branded header titles and simplified headers.
-11. **`brand`**: Sets custom brand name text shown in command response headers.
-12. **`version`**: Sets custom version string shown in command response headers.
-13. **`themepreview`**: Sends preview card demonstrating all active ANSI colors.
-14. **`themereset`**: Resets theme colors back to default Barro cyan/blue palette.
-15. **`bgstyle`**: Toggles background codeblock border formatting styles.
-16. **`quoteformat`**: Toggles Discord blockquote markers (`>`) on multi-line responses.
-17. **`colortest`**: Displays test grid of all 256 ANSI terminal color codes supported.
-18. **`fontstyle`**: Customizes figlet ASCII banner font style in console startup.
-19. **`gradienttheme`**: Generates multi-color gradient ANSI palette across text lines.
-20. **`themesave`**: Saves custom theme color scheme under unique preset name.
+### 🧰 General Productivity & Tools (10 Ideas)
+51. `calcadvanced` - Advanced scientific calculator supporting trigonometry, matrices, and calculus.
+52. `currency` - Converts live fiat and cryptocurrency exchange rates.
+53. `timezone` - Converts time across global timezones and formats Discord timestamp tags (`<t:12345:F>`).
+54. `reminder` - Sets local background reminder timer that alerts you via DM or console.
+55. `weather2` - Displays graphical ASCII weather forecast cards for any city worldwide.
+56. `githubrepo` - Fetches live GitHub repository statistics, latest commits, and open issues.
+57. `npmpackage` - Inspects NPM package dependencies, download counts, and release versions.
+58. `speedtest` - Runs network latency and download/upload speed test from server sandbox.
+59. `unitconvert` - Converts metric, imperial, temperature, and data size units instantly.
+60. `dictionary` - Looks up word definitions, synonyms, antonyms, and phonetics.
 
-### 🤡 7. Category: Troll (20 Commands)
-1. **`clown`**: Automatically reacts with 🤡 emoji to all messages sent by target user.
-2. **`mocktext`**: Converts input text into AlTeRnAtInG MoCkInG SpOnGeBoB text.
-3. **`ragebait`**: Generates absurd controversial statements designed to trigger arguments.
-4. **`badreply`**: Toggles automated random roast reply session for targeted user.
-5. **`fakehack`**: Generates realistic fake terminal hacking animation progress sequence.
-6. **`gcname`**: Continuously changes group chat title every N seconds.
-7. **`spam`**: Sends specified message text N times in current channel.
-8. **`fakemsg`**: Generates realistic quoted fake message screenshot text block.
-9. **`faketyping`**: Keeps typing indicator active indefinitely in current channel without sending messages.
-10. **`fakenitro`**: Generates realistic fake Nitro gift claim button link.
-11. **`dox`**: Generates humorous fake OSINT dox report card for target user.
-12. **`iplookup`**: Displays geo-IP geolocation information for specified IP address.
-13. **`osint`**: Runs public OSINT user lookup and search query.
-14. **`stalk`**: Starts active message, voice, and presence monitoring for target user.
-15. **`viewstalk`**: Displays recorded stalk log activity file for target user.
-16. **`ghostreact`**: Adds and instantly removes reaction emoji from message in milliseconds.
-17. **`shufflename`**: Continuously shuffles server nicknames of target user.
-18. **`reverse`**: Sends message text reversed backwards (`txet desrever`).
-19. **`spoilertext`**: Wraps every character in text in spoiler bars (`||t||||e||||x||||t||`).
-20. **`zalgo`**: Converts input string into corrupted Zalgo glitch text.
+### 🎮 Gaming & Entertainment (10 Ideas)
+61. `steaminfo` - Fetches Steam profile summary, game inventory value, and playing stats.
+62. `minecraft` - Checks status, player count, and ping of any Minecraft server IP.
+63. `robloxinfo` - Fetches Roblox user profile info, inventory badges, and game creation stats.
+64. `chesslookup` - Fetches Chess.com or Lichess rating stats and recent match records.
+65. `valorantstat` - Inspects Valorant player match history, rank, and K/D ratios.
+66. `apexstat` - Inspects Apex Legends player rank, main legend, and kill stats.
+67. `fortnitestat` - Displays Fortnite player victory royale counts and match stats.
+68. `csgostat` - Fetches Counter-Strike 2 match statistics and Competitive rank.
+69. `gamenews` - Displays latest gaming news headlines and free game deal alerts.
+70. `rawglookup` - Searches game database for release dates, ratings, and system requirements.
 
-### 🧰 8. Category: Utility (20 Commands)
-1. **`snipe`**: Fetches and displays last deleted message in current channel.
-2. **`editsnipe`**: Displays original unedited version of last edited message in channel.
-3. **`userinfo`**: Deep user account metadata fetcher (creation date, flags, badges, avatar).
-4. **`closedms`**: Automatically closes all open direct message channels to clean sidebar.
-5. **`tokencheck`**: Validates Discord token and displays account tag, ID, email, and MFA status.
-6. **`tokeninfo`**: Deep-inspects token metadata without logging into client.
-7. **`purge`**: Deletes specified number of selfbot messages from current channel.
-8. **`todo`**: Interactive local TODO list manager (add, remove, list tasks).
-9. **`shortcut`**: Sets custom short aliases for long complex commands.
-10. **`page`**: Paginated message response viewer for long data outputs.
-11. **`calculator`**: Evaluates mathematical expressions and formulas inline.
-12. **`weather`**: Fetches real-time weather forecasts for specified city name.
-13. **`base64`**: Encodes or decodes Base64 strings directly in chat.
-14. **`urlshorten`**: Shortens long URLs using privacy-focused URL shortening API.
-15. **`qr`**: Generates QR code image URL for specified text or link.
-16. **`time`**: Displays local time and timezone differences across global cities.
-17. **`hastebin`**: Uploads raw text content or logs to Hastebin/Pastebin site.
-18. **`avatar`**: Fetches full-resolution avatar URL for specified user.
-19. **`banner`**: Fetches full-resolution profile banner URL for specified user.
-20. **`hypesquad`**: Changes account HypeSquad house (Bravery, Brilliance, Balance).
+### 💣 Guild Security & Moderation Tools (10 Ideas)
+71. `antiraid` - Automatically locks channels and kicks new joining accounts if raid threshold exceeded.
+72. `linkfilter` - Automatically deletes unauthorized phishing or invite links posted in channels.
+73. `wordfilter` - Filters blacklisted words and automatically deletes matching messages.
+74. `slowmodetimer` - Dynamically adjusts channel slowmode based on current chat message velocity.
+75. `massdmcheck` - Scans server for suspicious accounts sending mass direct messages.
+76. `altdetector` - Identifies potential alt accounts created within the last N days.
+77. `permcheck` - Displays complete permission matrix breakdown for current user or role.
+78. `banlistexport` - Exports complete server ban list (IDs and reasons) to JSON backup.
+79. `unbanall` - Unbans all banned accounts from server ban list with rate limit delay.
+80. `rolebackup` - Backs up role assignments for all server members to JSON file.
 
-### 💣 9. Category: Nuke (20 Commands)
-1. **`massban`**: Administrative tool to ban list of user IDs in current guild.
-2. **`ban100`**: Bans first 100 members in guild server audit list.
-3. **`channelpurge`**: Purges all messages sent in channel by selfbot client.
-4. **`nuke`**: Administrative tool that clones and deletes current channel to wipe history.
-5. **`masskick`**: Kicks all members without roles in current guild.
-6. **`massrole`**: Assigns or removes role from all guild members in parallel.
-7. **`roledeleteall`**: Administrative tool to delete all non-protected roles in guild.
-8. **`channeldeleteall`**: Administrative tool to delete all channels in guild.
-9. **`emojideleteall`**: Deletes all custom emojis in current guild.
-10. **`categorydeleteall`**: Deletes all categories in current guild.
-11. **`massunban`**: Unbans all banned users in guild ban list.
-12. **`massnickname`**: Changes nicknames for all guild members to preset text.
-13. **`serverrename`**: Changes server guild name and icon instantly.
-14. **`webhooknuke`**: Deletes all webhooks created across all guild channels.
-15. **`prunemembers`**: Prunes inactive guild members who haven't logged in for N days.
-16. **`rolecreatebulk`**: Creates N roles with custom names and colors in bulk.
-17. **`channelcreatebulk`**: Creates N text or voice channels in bulk.
-18. **`massping`**: Pings all channels in guild simultaneously.
-19. **`slowmodeall`**: Sets slowmode channel rate limits across all text channels.
-20. **`lockall`**: Locks text permissions across all channels in guild.
+### 📊 OSINT & External Search (10 Ideas)
+81. `domainlookup` - Performs WHOIS domain registration lookup and DNS record inspection.
+82. `subdomainscan` - Discovers active subdomains for a target domain name.
+83. `shodansearch` - Searches Shodan database for exposed open ports and server banners.
+84. `wayback` - Fetches historical archive snapshots of websites from Wayback Machine.
+85. `emailverify` - Validates email deliverability and checks for MX records.
+86. `pwnedcheck` - Checks if an email address or username appears in known data breaches.
+87. `headerscan` - Inspects HTTP response headers and security headers of target URL.
+88. `usersearch` - Searches username availability across 50+ social media platforms.
+89. `maclookup` - Decodes network MAC address hardware manufacturer vendor.
+90. `hashidentify` - Identifies cryptographic hash types (MD5, SHA1, SHA256, Bcrypt).
 
-### 📦 10. Category: Other (20 Commands)
-1. **`ping`**: Precise Discord WebSocket and REST roundtrip API latency tester.
-2. **`savepresence`**: Saves current presence settings to local state file.
-3. **`support`**: Displays official support links and repository documentation URLs.
-4. **`view`**: Displays view state info for active settings and toggles.
-5. **`remove`**: Removes temporary data files or cached tracking logs.
-6. **`joinvc`**: Connects selfbot account to specified voice channel ID.
-7. **`leavevc`**: Disconnects selfbot account from active voice channel.
-8. **`noprefix`**: Toggles prefixless command invocation for active account.
-9. **`reload`**: Hot-reloads all command modules dynamically from disk.
-10. **`revoke`**: Revokes whitelist access from specified user ID.
-11. **`selfinfo`**: Displays active account profile information and user flags.
-12. **`status`**: Checks connection status and prefixes for all configured accounts.
-13. **`taskstop`**: Stops all running background tasks instantly.
-14. **`imagegen`**: Generates AI images using Pollinations API integration.
-15. **`dossier`**: Generates comprehensive local intelligence dossier report on user.
-16. **`expose`**: Searches public logs and search sources for user mentions.
-17. **`shadow`**: Starts shadow tracking user movements across mutual servers.
-18. **`ollamareply`**: Configures local Ollama model auto-reply triggers.
-19. **`aiafk`**: Manages automated AI away-from-keyboard responder.
-20. **`aireply`**: Configures automated AI auto-reply triggers.
+### 📦 Miscellaneous & Developer Utilities (10 Ideas)
+91. `jsonformat` - Beautifies or minifies JSON string payloads directly in chat.
+92. `regexcheck` - Evaluates regular expressions against test text strings.
+93. `jwtdecode` - Decodes JSON Web Tokens (JWT) payload and header data.
+94. `curl` - Sends custom HTTP GET/POST requests and displays response body/headers.
+95. `colorpicker` - Displays HEX, RGB, HSL color code conversions and visual preview.
+96. `cronexplain` - Translates Cron schedule expressions into plain readable English text.
+97. `htmlpreview` - Renders HTML text into sanitized text previews.
+98. `lorem` - Generates custom length Lorem Ipsum placeholder text blocks.
+99. `diff` - Generates side-by-side text diff comparisons between two text blocks.
+100. `uuidgen` - Generates random UUID v4 identifiers.
 
 ---
 
@@ -325,4 +225,4 @@
 | Bug | `commands/status/StatusRotator.js` | Unhandled timeout ID leak during status rotations | Fixed |
 | Bug | `utils/StalkManager.js` | `Invalid Date` parsing on localized stalk log files | Fixed |
 | Feature | All 29 Command Modules | 29 Automated features and exclusive commands | Implemented |
-| Concept Ideas | 200 Commands | 20 exclusive command concepts per category (10 categories) | Suggested |
+| Concept Ideas | 100 Brand New Commands | 100 unique command concepts never seen in Barro | Suggested |
