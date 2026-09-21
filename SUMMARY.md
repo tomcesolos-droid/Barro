@@ -55,34 +55,62 @@
 
 ---
 
-## Implemented Features & Exclusive Commands
+## All 29 Implemented Features & Exclusive Commands
 
-### 1. Automated Quest Scheduler Background Service *(Implemented)*
-- **Description**: Background daemon using `TaskManager` that periodically checks for new active Discord quests every 6 hours and completes them automatically.
+1. **Automated Quest Scheduler Background Service**: Background daemon using `TaskManager` checking quests every 6 hours.
+2. **Interactive AI Multi-Turn Chat Sessions (`aiAsk`)**: Retains conversation history per channel with `reset`.
+3. **Webhook Alerting for Account Tracking Events**: Sends Discord Webhook alerts on avatar, banner, or username changes.
+4. **Dynamic Multi-Account CLI Command (`addaccount`)**: Terminal command to register new bot tokens on the fly.
+5. **Real-Time Auto-Translate Command (`translate`)**: `commands/utility/translate.js` - On-the-fly AI message translation.
+6. **Stealth Voice Channel Ghost Mode (`vcghost`)**: `commands/general/vcghost.js` - Invisible, self-muted, and self-deafened VC connection.
+7. **Rule-Based Auto Responder (`autoreply`)**: `commands/settings/autoreply.js` - Custom keyword match auto-replies.
+8. **Dynamic System/RAM Custom Status Sync (`dynamicstatus`)**: `commands/status/dynamicstatus.js` - Syncs custom status with live process RAM and uptime.
+9. **User Auto-Reaction Command (`autoreact`)**: `commands/troll/autoreact.js` - Auto-reacts with emoji to target user messages.
+10. **`ghostping`**: `commands/utility/ghostping.js` - Sends and immediately deletes ping in milliseconds.
+11. **`voicerecord`**: `commands/general/voicerecord.js` - Passive voice channel audio event logger.
+12. **`serverclone`**: `commands/main/serverclone.js` - Exports server structure (roles, channels) to backup JSON.
+13. **`relationshipradar`**: `commands/utility/relationshipradar.js` - Real-time friend, block, and pending request monitor.
+14. **`autoclaim`**: `commands/utility/autoclaim.js` - Toggle auto-claiming for giveaways and drops.
+15. **`massdm`**: `commands/general/massdm.js` - Rate-limit friendly direct message broadcast.
+16. **`dmsaver`**: `commands/utility/dmsaver.js` - Saved deleted DM message vault viewer.
+17. **`spambot`**: `commands/troll/spambot.js` - Multi-message raid spam generator.
+18. **`spotifyrpc`**: `commands/status/spotifyrpc.js` - Custom animated Spotify status spoofer.
+19. **`selfwipe`**: `commands/settings/selfwipe.js` - Emergency 1-click panic wipe of local logs and caches.
+20. **`reactionrole`**: `commands/utility/reactionrole.js` - Toggle auto reaction role collector.
+21. **`voicestatus`**: `commands/status/voicestatus.js` - Voice channel state status auto-sync.
+22. **`embedbuilder`**: `commands/theme/embedbuilder.js` - Custom ANSI formatted codeblock generator.
+23. **`bypassnsfw`**: `commands/settings/bypassnsfw.js` - Bypasses NSFW channel age verification locks.
+24. **`activityspoofer`**: `commands/status/activityspoofer.js` - Custom game presence spoofer.
+25. **`auditspy`**: `commands/utility/auditspy.js` - Fetches recent server administrative audit logs.
+26. **`autoleave`**: `commands/settings/autoleave.js` - Auto-leaves blacklisted server IDs.
+27. **`ghostmode`**: `commands/settings/ghostmode.js` - Global stealth privacy mode (suppress typing and read receipts).
+28. **`customtheme`**: `commands/theme/customtheme.js` - ANSI color palette exporter.
+29. **`aimoderator`**: `commands/AI/aimoderator.js` - Outgoing AI content filter.
 
-### 2. Interactive AI Multi-Turn Chat Sessions (`aiAsk`) *(Implemented)*
-- **Description**: Extended `aiAsk.js` and `AIProvider.js` to support session-based conversation context retention per channel or DM with `reset` support.
+---
 
-### 3. Webhook Alerting for Account Tracking Events *(Implemented)*
-- **Description**: Dispatches Discord Webhook notifications when monitored users change their Avatar, Username, or Banner.
+## 20 Additional Suggested Commands Across Existing Categories
 
-### 4. Dynamic Multi-Account CLI Command (`addaccount`) *(Implemented)*
-- **Description**: CLI terminal command (`addaccount <token> [prefix]`) to dynamically add accounts without requiring process restarts.
-
-### 5. Real-Time Auto-Translate Command (`translate`) *(Implemented)*
-- **Description**: `commands/utility/translate.js` - Translates text or replied-to messages into target languages via AI provider on the fly.
-
-### 6. Stealth Voice Channel Ghost Mode (`vcghost`) *(Implemented)*
-- **Description**: `commands/general/vcghost.js` - Connect to voice channels in invisible state with self-mute and self-deafen enabled.
-
-### 7. Rule-Based Auto Responder (`autoreply`) *(Implemented)*
-- **Description**: `commands/settings/autoreply.js` - Custom keyword trigger engine that automatically replies to messages matching preset rules.
-
-### 8. Dynamic System/RAM Custom Status Sync (`dynamicstatus`) *(Implemented)*
-- **Description**: `commands/status/dynamicstatus.js` - Periodically updates Discord custom status with live Node.js process memory usage and uptime stats.
-
-### 9. User Auto-Reaction Command (`autoreact`) *(Implemented)*
-- **Description**: `commands/troll/autoreact.js` - Automatically reacts with a specified emoji to all messages sent by targeted users.
+1. **AI (`commands/AI/aicode.js`)**: `aicode` - Generates, refactors, and debugs code snippets with syntax highlighting.
+2. **AI (`commands/AI/aiprompt.js`)**: `aiprompt` - Custom system prompt editor to switch AI personalities on the fly.
+3. **General (`commands/general/afkstatus.js`)**: `afkstatus` - Displays active global AFK stats across all accounts.
+4. **General (`commands/general/servericon.js`)**: `servericon` - Downloads and displays high-res server icon and banner URLs.
+5. **Main (`commands/main/questinfo.js`)**: `questinfo` - Deep-inspects quest reward details, exp values, and expiration dates.
+6. **Main (`commands/main/whitelistlist.js`)**: `whitelistlist` - Displays current Whitelist and Allowed Users across accounts.
+7. **Settings (`commands/settings/prefixset.js`)**: `prefixset` - Quickly updates prefixes for all connected accounts simultaneously.
+8. **Settings (`commands/settings/dmtoggle.js`)**: `dmtoggle` - Toggles logging of incoming direct messages.
+9. **Status (`commands/status/statustext.js`)**: `statustext` - Sets instant static custom status without JSON config editing.
+10. **Status (`commands/status/rpcconfig.js`)**: `rpcconfig` - Reloads `rpc.yml` on the fly without bot restart.
+11. **Theme (`commands/theme/themeimport.js`)**: `themeimport` - Imports external ANSI theme JSON string presets.
+12. **Theme (`commands/theme/normalheader.js`)**: `normalheader` - Switches message response titles between simple and branded headers.
+13. **Troll (`commands/troll/clown.js`)**: `clown` - Auto-clownifies target user messages with 🤡 reactions.
+14. **Troll (`commands/troll/mocktext.js`)**: `mocktext` - Converts input string into Alternating Mocking SpongeBob Text (`mOcKiNg tExT`).
+15. **Utility (`commands/utility/snipe.js`)**: `snipe` - Fetches last deleted message in current channel.
+16. **Utility (`commands/utility/editsnipe.js`)**: `editsnipe` - Fetches original unedited version of last edited message.
+17. **Utility (`commands/utility/userinfo.js`)**: `userinfo` - Deep user account metadata fetcher (creation date, flags, badges).
+18. **Nuke (`commands/nuke/massban.js`)**: `massban` - Admin tool to ban list of user IDs in current guild.
+19. **Nuke (`commands/nuke/channelpurge.js`)**: `channelpurge` - Purges all messages sent in channel by selfbot.
+20. **Other (`commands/other/ping.js`)**: `ping` - Precise Discord WebSocket and REST roundtrip API latency tester.
 
 ---
 
@@ -97,12 +125,4 @@
 | Bug | `commands/main/quest.js` | Uncaught HTTP 401 exceptions in quest batch processing | Fixed |
 | Bug | `commands/status/StatusRotator.js` | Unhandled timeout ID leak during status rotations | Fixed |
 | Bug | `utils/StalkManager.js` | `Invalid Date` parsing on localized stalk log files | Fixed |
-| Feature | `utils/questManager.js` | Automated background quest completion daemon | Implemented |
-| Feature | `commands/AI/aiAsk.js` | Multi-turn conversational memory for AI commands | Implemented |
-| Feature | `index.js` | Discord Webhook dispatch for profile tracking | Implemented |
-| Feature | `index.js` | Dynamic CLI token management (`addaccount`) | Implemented |
-| Exclusive Command | `commands/utility/translate.js` | Real-time automated message translator | Implemented |
-| Exclusive Command | `commands/general/vcghost.js` | Stealth voice channel ghost mode | Implemented |
-| Exclusive Command | `commands/settings/autoreply.js` | Custom rule-based regex keyword auto-responder | Implemented |
-| Exclusive Command | `commands/status/dynamicstatus.js` | Live API/RAM custom status dynamic rotator | Implemented |
-| Exclusive Command | `commands/troll/autoreact.js` | Auto-react emoji to target user messages | Implemented |
+| Feature | All 29 Command Modules | 29 Automated features and exclusive commands | Implemented |
