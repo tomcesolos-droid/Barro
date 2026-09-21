@@ -15,6 +15,8 @@ import { loadConfig, clearConsole, log, wait, style, loadJSONAsync, saveJSONAsyn
 import { getUserPrefix } from "./utils/userPrefixManager.js";
 import TaskManager from "./utils/TaskManager.js";
 import { initNitroSniper } from "./commands/general/nitrosniper.js";
+import { QuestManager } from "./utils/questManager.js";
+import axios from "axios";
 
 let isShuttingDown = false;
 let clients = [];
@@ -28,11 +30,41 @@ let logoutCooldownActive = false;
 
 function displaySimpleMenu() {
   console.log('\n' + style('Available Commands:', '0;36'));
-  console.log(style('login', '1;37') + '    | Start all bots');
-  console.log(style('logout', '1;37') + '   | Turn off all bots');
-  console.log(style('restart', '1;37') + '  | Restart all bots');
-  console.log(style('status', '1;37') + '   | Check the status of bots');
-  console.log(style('exit', '1;37') + '     | Exit the terminal\n');
+  console.log(style('login', '1;37') + '           | Start all bots');
+  console.log(style('logout', '1;37') + '          | Turn off all bots');
+  console.log(style('restart', '1;37') + '         | Restart all bots');
+  console.log(style('status', '1;37') + '          | Check the status of bots');
+  console.log(style('addaccount <token> [prefix]', '1;37') + ' | Add account dynamically');
+  console.log(style('exit', '1;37') + '            | Exit the terminal\n');
+}
+
+function setupAutoQuestScheduler(client) {
+  if (client._questSchedulerInitialized) return;
+  client._questSchedulerInitialized = true;
+
+  const intervalMs = 6 * 60 * 60 * 1000; // Check every 6 hours
+  TaskManager.addTask(
+    `auto-quest-${client.user.id}`,
+    async () => {
+      try {
+        log(`Running automated background quest check for ${client.user.tag}...`, 'info');
+        const manager = new QuestManager(client.token || client.user.token);
+        const quests = await manager.fetchQuests();
+        const available = quests.filter(q => !q.user_status?.completed_at && !q.user_status?.claimed_at && !manager.isQuestExpired(q));
+        log(`Auto-Quest scheduler found ${available.length} active quests for ${client.user.username}`, 'info');
+        for (const quest of available) {
+          try {
+            await manager.doQuest(quest.id);
+          } catch (err) {
+            log(`Auto-Quest error on quest ${quest.id}: ${err.message}`, 'warn');
+          }
+        }
+      } catch (err) {
+        log(`Auto-Quest background scheduler error: ${err.message}`, 'error');
+      }
+    },
+    intervalMs
+  );
 }
 
 // ============================================
@@ -40,9 +72,32 @@ function displaySimpleMenu() {
 // ============================================
 
 async function setupTracking(client) {
+  if (client._trackingInitialized) return;
+  client._trackingInitialized = true;
+
   const PFP_PATH = resolve('./data/pfphistory.json');
   const NAME_PATH = resolve('./data/namehistory.json');
   const BANNER_PATH = resolve('./data/bannerhistory.json');
+
+  const config = loadConfig();
+  const trackingWebhook = config.tracking?.webhook_url || null;
+
+  const dispatchTrackingWebhook = async (title, description, imageUrl = null) => {
+    if (!trackingWebhook) return;
+    try {
+      await axios.post(trackingWebhook, {
+        embeds: [{
+          title: `🔍 Tracking Alert: ${title}`,
+          description,
+          color: 0x00c6ff,
+          image: imageUrl ? { url: imageUrl } : undefined,
+          timestamp: new Date().toISOString()
+        }]
+      });
+    } catch (err) {
+      log(`Failed to send tracking webhook: ${err.message}`, 'warn');
+    }
+  };
 
   client.on('userUpdate', async (oldUser, newUser) => {
     try {
@@ -60,8 +115,9 @@ async function setupTracking(client) {
         const pfpData = await loadJSONAsync(PFP_PATH);
         if (!pfpData[newUser.id]) pfpData[newUser.id] = [];
 
+        const oldAvatarUrl = oldUser.displayAvatarURL({ dynamic: true, size: 1024 });
         pfpData[newUser.id].push({
-          url: oldUser.displayAvatarURL({ dynamic: true, size: 1024 }),
+          url: oldAvatarUrl,
           changedAt: new Date().toISOString(),
         });
 
@@ -71,6 +127,7 @@ async function setupTracking(client) {
 
         await saveJSONAsync(PFP_PATH, pfpData);
         log(`Tracked PFP change for ${newUser.username}`, 'debug', client.user?.username || 'Unknown');
+        await dispatchTrackingWebhook('Avatar Changed', `**${newUser.tag}** (${newUser.id}) updated their avatar.`, newUser.displayAvatarURL({ dynamic: true, size: 1024 }));
       }
 
       // ---- TRACK USERNAME CHANGE ----
@@ -89,6 +146,7 @@ async function setupTracking(client) {
 
         await saveJSONAsync(NAME_PATH, nameData);
         log(`Tracked username change for ${newUser.username} (was ${oldUser.username})`, 'debug', client.user?.username || 'Unknown');
+        await dispatchTrackingWebhook('Username Changed', `**User ID:** ${newUser.id}\n**Old Username:** ${oldUser.username}\n**New Username:** ${newUser.username}`);
       }
 
       // ---- TRACK BANNER CHANGE ----
@@ -110,6 +168,7 @@ async function setupTracking(client) {
 
           await saveJSONAsync(BANNER_PATH, bannerData);
           log(`Tracked banner change for ${newUser.username}`, 'debug', client.user?.username || 'Unknown');
+          await dispatchTrackingWebhook('Banner Changed', `**${newUser.tag}** (${newUser.id}) updated their profile banner.`, newUser.bannerURL?.({ dynamic: true, size: 1024 }));
         }
       }
 
@@ -245,6 +304,8 @@ async function loginBots(clients, config) {
 
         log(`Connected successfully`, 'success', accLabel);
 
+        setupAutoQuestScheduler(client);
+
         if (config.nitro_sniper?.enabled !== false) {
           try {
             initNitroSniper(client);
@@ -352,7 +413,58 @@ function setupTerminalInterface(clients, config) {
 
   const prompt = () => {
     rl.question(style('> ', '0;36'), async (input) => {
-      const command = input.trim().toLowerCase();
+      const rawInput = input.trim();
+      const command = rawInput.toLowerCase();
+
+      if (command.startsWith('addaccount')) {
+        const parts = rawInput.split(/\s+/);
+        const token = parts[1];
+        const prefix = parts[2] || config.selfbot?.prefix || ',';
+
+        if (!token) {
+          console.log(style('Usage: addaccount <token> [prefix]', '1;31'));
+          prompt();
+          return;
+        }
+
+        const validation = validateToken(token);
+        if (!validation.isValid) {
+          console.log(style(`Invalid token: ${validation.error}`, '1;31'));
+          prompt();
+          return;
+        }
+
+        const newClient = new Client({
+          checkUpdate: false,
+          autoRedeemNitro: true,
+          relationshipSweepInterval: 60,
+          restRequestTimeout: 60000,
+          partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'USER', 'GUILD_MEMBER'],
+          ws: {
+            properties: {
+              $browser: config.client_properties?.browser || "Discord Client",
+            },
+          },
+        });
+
+        newClient.config = config;
+        newClient.prefix = prefix;
+        newClient.noprefix = false;
+        newClient.commands = new Map();
+        newClient.cooldowns = new Map();
+
+        setupAntiCrash(newClient);
+        setupRateLimit(newClient);
+
+        await loadCommands(newClient);
+        await loadEvents(newClient);
+        setupTracking(newClient);
+
+        clients.push(newClient);
+        console.log(style(`Account added as Acc ${clients.length}! Use "login" to connect.`, '0;32'));
+        prompt();
+        return;
+      }
 
       switch (command) {
         case 'login':

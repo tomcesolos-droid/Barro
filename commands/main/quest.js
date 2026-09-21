@@ -289,12 +289,14 @@ export default {
 							const blockErr = formatAnsiBlock([
 								style('Quest Error', THEME.HEADER_BOLD_COLOR, true),
 								style('Quest:', THEME.LABEL_COLOR) + ' ' + style(qName, THEME.ACCENT_COLOR),
-								style('Result:', THEME.LABEL_COLOR) + ' ' + style(e.message, THEME.ACCENT_COLOR)
+								style('Result:', THEME.LABEL_COLOR) + ' ' + style(e.message || 'Error completing quest', THEME.ACCENT_COLOR)
 							]);
-							await message.channel.send(formatAnsiBlocks([block1, blockErr]));
+							try {
+								await message.channel.send(formatAnsiBlocks([block1, blockErr]));
+							} catch {}
 						}
 					});
-					await Promise.all(batchPromises);
+					await Promise.allSettled(batchPromises);
 				}
 
 				if (manager.stopRequested) {

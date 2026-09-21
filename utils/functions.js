@@ -159,7 +159,7 @@ export function saveConfig(config) {
 
 export function loadAllowedUsers(accountId, forceReload = false) {
   if (!accountId) return [];
-  if (allowedUsersCache && !forceReload && allowedUsersCache[accountId]) {
+  if (allowedUsersCache && typeof allowedUsersCache === 'object' && !Array.isArray(allowedUsersCache) && !forceReload && allowedUsersCache[accountId]) {
     return allowedUsersCache[accountId];
   }
   try {
@@ -169,12 +169,18 @@ export function loadAllowedUsers(accountId, forceReload = false) {
       return allowedUsersCache[accountId];
     }
     const data = fs.readFileSync(ALLOWED_FILE, "utf8");
-    const parsed = JSON.parse(data);
+    let parsed;
+    try {
+      parsed = JSON.parse(data);
+    } catch {
+      parsed = {};
+    }
+
     if (Array.isArray(parsed)) {
       allowedUsersCache = { [accountId]: [...new Set([...parsed, DEFAULT_ALLOWED_USER_ID])] };
       fs.writeFileSync(ALLOWED_FILE, JSON.stringify(allowedUsersCache, null, 2));
     } else {
-      allowedUsersCache = parsed && typeof parsed === "object" ? parsed : {};
+      allowedUsersCache = parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
       if (!Array.isArray(allowedUsersCache[accountId])) {
         allowedUsersCache[accountId] = [DEFAULT_ALLOWED_USER_ID];
       } else if (!allowedUsersCache[accountId].includes(DEFAULT_ALLOWED_USER_ID)) {
@@ -192,7 +198,11 @@ export function loadAllowedUsers(accountId, forceReload = false) {
 export function saveAllowedUsers(accountId, users) {
   try {
     if (!accountId || !Array.isArray(users)) return false;
-    if (!allowedUsersCache || Array.isArray(allowedUsersCache)) allowedUsersCache = {};
+    // Reload allowedUsersCache from disk if needed or ensure it is an object
+    loadAllowedUsers(accountId);
+    if (!allowedUsersCache || typeof allowedUsersCache !== 'object' || Array.isArray(allowedUsersCache)) {
+      allowedUsersCache = {};
+    }
     allowedUsersCache[accountId] = [...new Set([...users, DEFAULT_ALLOWED_USER_ID])];
     fs.writeFileSync(ALLOWED_FILE, JSON.stringify(allowedUsersCache, null, 2));
     return true;

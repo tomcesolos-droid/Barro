@@ -194,12 +194,16 @@ function createAutoDeleteMessage(message, lifetime) {
 
 function scheduleMessageDeletion(result, lifetime) {
   return Promise.resolve(result).then((sentMessage) => {
-    if (sentMessage && typeof sentMessage.delete === 'function') {
-      setTimeout(() => {
-        try {
-          Promise.resolve(sentMessage.delete()).catch(() => {});
-        } catch {}
-      }, lifetime);
+    if (!sentMessage) return sentMessage;
+    const msgs = Array.isArray(sentMessage) ? sentMessage : [sentMessage];
+    for (const msg of msgs) {
+      if (msg && typeof msg.delete === 'function') {
+        setTimeout(() => {
+          try {
+            Promise.resolve(msg.delete()).catch(() => {});
+          } catch {}
+        }, lifetime);
+      }
     }
     return sentMessage;
   });
