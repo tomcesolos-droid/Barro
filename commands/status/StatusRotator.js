@@ -241,7 +241,8 @@ export default {
         sessionData.intervalId = setTimeout(rotateStatus, nextInterval);
 
         // Add cancellation listener to the timeout
-        if (sessionData.task.signal) {
+        if (sessionData.task.signal && !sessionData._abortListenerAdded) {
+          sessionData._abortListenerAdded = true;
           sessionData.task.signal.addEventListener("abort", () => {
             if (sessionData.intervalId) {
               clearTimeout(sessionData.intervalId);

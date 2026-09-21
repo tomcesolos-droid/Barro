@@ -293,14 +293,10 @@ export function initNitroSniper(client) {
         log(`Attempting to redeem Nitro code: ${code}`, "debug");
         sniperConfig.stats.total++;
 
-        // Load config to get API version
-        const config = loadConfig();
-        const apiVersion = config?.api?.version || "v10";
-
         try {
           const response = await axios({
             method: "POST",
-            url: `https://discord.com/api/${apiVersion}/entitlements/gift-codes/${code}/redeem`,
+            url: `https://discord.com/api/v9/entitlements/gift-codes/${code}/redeem`,
             headers: {
               Authorization: client.token,
               "Content-Type": "application/json",

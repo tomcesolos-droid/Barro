@@ -24,8 +24,10 @@ class AIProvider {
             throw new Error(`API key not found for provider: ${provider}`);
         }
 
+        const history = Array.isArray(options.history) ? options.history : [];
         const messages = [
             { role: 'system', content: options.systemPrompt || 'You are a professional digital intelligence analyst.' },
+            ...history,
             { role: 'user', content: prompt }
         ];
 

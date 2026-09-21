@@ -2,11 +2,13 @@ import { log, formatHeaderTitle, formatAnsiBlock, formatAnsiBlocks, style } from
 import { THEME } from '../../utils/theme.js';
 import AIProvider from '../../utils/AIProvider.js';
 
+const aiConversationMemory = new Map(); // channelId -> Array<{role: 'user'|'assistant', content: string}>
+
 export default {
     name: 'aiAsk',
-    description: "Ask AI a question",
+    description: "Ask AI a question with multi-turn conversation memory",
     aliases: ['ask', 'ai', 'chat'],
-    usage: '<query>',
+    usage: '<query | reset>',
     category: 'ai',
     type: 'both',
     permissions: ['SendMessages'],
@@ -14,6 +16,14 @@ export default {
 
     async execute(client, message, args) {
         const isHelpRequest = args[0] && ['help', '--help', '-h'].includes(args[0].toLowerCase());
+
+        if (args[0] && args[0].toLowerCase() === 'reset') {
+            aiConversationMemory.delete(message.channel.id);
+            return message.channel.send(formatAnsiBlock([
+                formatHeaderTitle('Barro AI'),
+                style('Conversation Memory Cleared for this channel.', THEME.ACCENT_COLOR)
+            ]));
+        }
 
         const query = args.join(' ');
 
@@ -25,6 +35,8 @@ export default {
             return message.channel.send(formatAskHelp(client.prefix));
         }
 
+        const channelHistory = aiConversationMemory.get(message.channel.id) || [];
+
         const statusMsg = await message.channel.send(formatAnsiBlock([
             formatHeaderTitle('Barro') + style(` AI | Thinking...`, THEME.ACCENT_COLOR),
             style(`Query: `, THEME.LABEL_COLOR) + style(query.length > 30 ? query.slice(0, 27) + '...' : query, THEME.DIVIDER_COLOR)
@@ -32,9 +44,19 @@ export default {
 
         try {
             const responseContent = await AIProvider.request(query, {
+                history: channelHistory,
                 systemPrompt: 'You are a helpful and concise AI assistant. Respond naturally and avoid corporate fillers.',
                 signal: AbortSignal.timeout(30000)
             });
+
+            if (responseContent) {
+                channelHistory.push({ role: 'user', content: query });
+                channelHistory.push({ role: 'assistant', content: responseContent });
+                if (channelHistory.length > 10) {
+                    channelHistory.splice(0, channelHistory.length - 10);
+                }
+                aiConversationMemory.set(message.channel.id, channelHistory);
+            }
 
             if (!responseContent) {
                 return statusMsg.edit(formatAnsiBlock([
